@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { MessageSquare, Plus, Settings, Trash2 } from "lucide-react";
-import { useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import {
   createThread,
   deleteThread,
@@ -21,7 +21,11 @@ export function ThreadSidebar({
 }) {
   const navigate = useNavigate();
   useSyncExternalStore(subscribeThreads, getThreadsVersion, getThreadsVersion);
-  const threads = listThreads();
+  // Gate on mount so SSR and first client render match (thread store is
+  // client-only).
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const threads = mounted ? listThreads() : [];
 
   const newChat = () => {
     const thread = createThread();
