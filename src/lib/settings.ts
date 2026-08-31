@@ -5,7 +5,7 @@ const WEBHOOK_KEY = "n8n-chat-webhook-url";
 // the /webhook-test/ variant only answers once after clicking
 // "Execute workflow" in the n8n editor.
 const DEFAULT_WEBHOOK_URL =
-  "https://iqbal124421.app.n8n.cloud/webhook/06e46e04-13a3-4868-9adb-b1557dda4526";
+  "https://iqbal124421.app.n8n.cloud/webhook/dfd4b8ed-d524-477d-8634-acedd03ca00a";
 
 export function getWebhookUrl(): string {
   if (typeof window === "undefined") return DEFAULT_WEBHOOK_URL;
