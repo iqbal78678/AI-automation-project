@@ -1,4 +1,4 @@
-const WEBHOOK_KEY = "n8n-chat-webhook-url";
+const WEBHOOK_KEY = "n8n-chat-webhook-url-v2";
 
 // Default n8n webhook for this project — used until the user overrides it
 // in Settings. Production URL (requires the workflow to be Active in n8n);
