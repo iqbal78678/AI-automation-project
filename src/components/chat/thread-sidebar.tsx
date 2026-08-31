@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { MessageSquare, Plus, Settings, Trash2 } from "lucide-react";
+import { MessageCircle, Settings2, SquarePen, Trash2 } from "lucide-react";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import {
   createThread,
@@ -39,7 +39,13 @@ export function ThreadSidebar({
   return (
     <div className="flex h-full w-full flex-col bg-sidebar">
       <div className="flex items-center gap-2.5 px-4 pt-5 pb-4">
-        <img src={logo} alt="Nodely logo" width={28} height={28} className="rounded-md" />
+        <img
+          src={logo}
+          alt="Nodely logo"
+          width={30}
+          height={30}
+          className="rounded-lg ring-1 ring-sidebar-border shadow-[var(--shadow-brand)]"
+        />
         <span className="text-[15px] font-semibold tracking-tight text-sidebar-foreground">
           Nodely
         </span>
@@ -49,9 +55,9 @@ export function ThreadSidebar({
         <button
           type="button"
           onClick={newChat}
-          className="flex w-full items-center gap-2 rounded-lg border border-sidebar-border bg-background px-3 py-2 text-sm font-medium text-sidebar-foreground shadow-xs transition-colors hover:bg-sidebar-accent"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-sidebar-primary px-3 py-2.5 text-sm font-semibold text-sidebar-primary-foreground shadow-[var(--shadow-brand)] transition-all hover:brightness-105 active:scale-[0.98]"
         >
-          <Plus className="size-4" />
+          <SquarePen className="size-4" />
           New chat
         </button>
       </div>
