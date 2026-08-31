@@ -1,7 +1,7 @@
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { PanelLeft, PlugZap } from "lucide-react";
+import { Lightbulb, ListChecks, Mail, PanelLeft, PlugZap } from "lucide-react";
 import {
   Conversation,
   ConversationContent,
@@ -85,22 +85,37 @@ export function ChatWindow({
 
   return (
     <div className="flex h-full min-w-0 flex-1 flex-col bg-background">
-      <header className="flex items-center gap-2 border-b border-border px-3 py-2.5 md:px-5">
+      <header className="flex items-center gap-3 border-b border-border bg-card/60 px-3 py-2.5 backdrop-blur-sm md:px-5">
         <button
           type="button"
           onClick={onToggleSidebar}
           aria-label="Toggle sidebar"
-          className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground md:hidden"
+          className="rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground md:hidden"
         >
           <PanelLeft className="size-5" />
         </button>
-        <span className="text-sm font-medium text-foreground">Chat</span>
-        <span className="ml-auto flex items-center gap-1.5 text-xs text-muted-foreground">
+        <img
+          src={logo}
+          alt=""
+          width={24}
+          height={24}
+          className="rounded-md ring-1 ring-border md:hidden"
+        />
+        <span className="text-sm font-semibold tracking-tight text-foreground">
+          Nodely Chat
+        </span>
+        <span
+          className={
+            webhookUrl
+              ? "ml-auto flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-600 ring-1 ring-emerald-500/25 dark:text-emerald-400"
+              : "ml-auto flex items-center gap-1.5 rounded-full bg-amber-500/10 px-2.5 py-1 text-xs font-medium text-amber-600 ring-1 ring-amber-500/25 dark:text-amber-400"
+          }
+        >
           <span
             className={
               webhookUrl
                 ? "size-1.5 rounded-full bg-emerald-500"
-                : "size-1.5 rounded-full bg-amber-500"
+                : "size-1.5 animate-pulse rounded-full bg-amber-500"
             }
           />
           {webhookUrl ? "n8n connected" : "Webhook not set"}
