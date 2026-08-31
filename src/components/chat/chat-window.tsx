@@ -125,27 +125,44 @@ export function ChatWindow({
       <Conversation className="flex-1">
         <ConversationContent className="mx-auto w-full max-w-2xl gap-6 px-4 py-6">
           {isEmpty ? (
-            <div className="flex flex-col items-center justify-center gap-4 py-24 text-center">
+            <div className="flex flex-col items-center justify-center gap-5 py-20 text-center">
               <img
                 src={logo}
                 alt="Nodely logo"
-                width={56}
-                height={56}
-                className="rounded-2xl"
+                width={64}
+                height={64}
+                className="rounded-2xl shadow-[var(--shadow-brand)] ring-1 ring-border"
               />
               <div>
-                <h1 className="text-lg font-semibold tracking-tight text-foreground">
+                <h1 className="text-xl font-semibold tracking-tight text-foreground">
                   How can I help?
                 </h1>
-                <p className="mt-1 text-sm text-muted-foreground">
+                <p className="mt-1.5 text-sm text-muted-foreground">
                   Send a message and your n8n workflow will answer.
                 </p>
+              </div>
+              <div className="grid w-full max-w-md gap-2 sm:grid-cols-3">
+                {[
+                  { icon: Lightbulb, label: "Brainstorm ideas" },
+                  { icon: Mail, label: "Draft an email" },
+                  { icon: ListChecks, label: "Plan my day" },
+                ].map(({ icon: Icon, label }) => (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => void sendMessage({ text: label })}
+                    className="flex flex-col items-start gap-2 rounded-xl border border-border bg-card px-3.5 py-3 text-left text-[13px] font-medium text-foreground shadow-xs transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+                  >
+                    <Icon className="size-4 text-primary" />
+                    {label}
+                  </button>
+                ))}
               </div>
               {!webhookUrl && (
                 <SettingsDialog>
                   <button
                     type="button"
-                    className="mt-2 inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-xs transition-colors hover:bg-accent"
+                    className="mt-1 inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-brand)] transition-all hover:brightness-105 active:scale-[0.98]"
                   >
                     <PlugZap className="size-4" />
                     Connect your n8n webhook
@@ -188,14 +205,21 @@ export function ChatWindow({
       </Conversation>
 
       <div className="mx-auto w-full max-w-2xl px-4 pb-4">
-        <PromptInput onSubmit={handleSubmit}>
+        <PromptInput
+          onSubmit={handleSubmit}
+          className="rounded-2xl shadow-lg shadow-foreground/5 ring-1 ring-border/60"
+        >
           <PromptInputTextarea
             ref={textareaRef}
             placeholder="Message your agent…"
             disabled={isLoading}
           />
           <PromptInputFooter className="justify-end">
-            <PromptInputSubmit status={status} disabled={isLoading} />
+            <PromptInputSubmit
+              status={status}
+              disabled={isLoading}
+              className="rounded-xl bg-primary text-primary-foreground shadow-[var(--shadow-brand)] transition-all hover:brightness-105"
+            />
           </PromptInputFooter>
         </PromptInput>
         <p className="pt-2 text-center text-[11px] text-muted-foreground">
